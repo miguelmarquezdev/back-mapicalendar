@@ -2,7 +2,6 @@ import express from "express";
 import axios from "axios";
 import cors from "cors";
 import dotenv from "dotenv";
-import https from "https";
 
 dotenv.config();
 
@@ -11,7 +10,29 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+// 🔒 Lista de dominios permitidos
+const allowedOrigins = [
+  "https://machupicchutickets.net",
+  "https://enjoyperu.org",
+  "https://machupicchu-andean.com",
+  "https://bigfootmachupicchu.com",
+  "https://sapadventures.org" // Para pruebas locales, puedes eliminarlo en producción
+];
+
+// Configuración de CORS
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Acceso no permitido por CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
 // URLs de la API de Machu Picchu
 const AUTH_URL = "https://api-tuboleto.cultura.pe/auth/user/login";
@@ -74,4 +95,3 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`🟢 Servidor corriendo en http://localhost:${PORT}`);
 });
-
