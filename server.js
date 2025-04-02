@@ -18,7 +18,8 @@ const allowedOrigins = [
   "https://machupicchu-andean.com",
   "https://bigfootmachupicchu.com",
   "https://sapadventures.org",
-  "https://lostinperu.com" // Para pruebas locales, puedes eliminarlo en producción
+  "https://lostinperu.com",
+   // Para pruebas locales, puedes eliminarlo en producción
 ];
 
 // Configuración de CORS
