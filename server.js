@@ -20,6 +20,8 @@ const allowedOrigins = [
   "https://sapadventures.org",
   "https://lostinperu.com",
   "https://www.cusco-explore.com",
+  "https://www.machupicchuviews.com",
+  "https://www.nickey-travel.com",
    // Para pruebas locales, puedes eliminarlo en producción
 ];
 
